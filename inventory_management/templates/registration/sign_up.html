@@ -8,6 +8,7 @@
     <form method="post" class="form_group">
         {% csrf_token %}
         {{ form }}
-        <button type="submit" class="btn btn-succes">Register</button>
+        <button class="btn btn-primary" type="submit">Register</button>
     </form>
+    <p style="line-height: 150%">If you have a Account, please <a href="/login/">Sign in</a></p>#<p style="line-height: 150%"><a href="login/">Sign Up</a></p>
 {% endblock %}
