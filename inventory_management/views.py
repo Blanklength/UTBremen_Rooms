@@ -11,6 +11,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .models import OtherEquipment
+from django.contrib.auth.models import User
 
 
 # from .forms import FilterForm
@@ -126,4 +127,8 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/sign_up.html"
 
-#blalsad
+
+class UserDetailView(DetailView):
+    model = User
+
+

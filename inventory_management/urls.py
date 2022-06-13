@@ -7,6 +7,7 @@ from .views import RoomDetailView
 from .views import DeviceDetailView
 from .views import SignUpView
 from .views import OtherEquipmentListView
+from .views import UserDetailView
 
 
 urlpatterns = [
@@ -16,6 +17,5 @@ urlpatterns = [
     path('device/<int:pk>/', DeviceDetailView.as_view(), name="device_detail"),
     path('room/<int:pk>/', RoomDetailView.as_view(), name="device_detail"),
     path('signup/', SignUpView.as_view(), name="sign_up"),
-    path('OtherEquipment/', OtherEquipmentListView.as_view(), name="otherequipment")
-
+    path('OtherEquipment/', OtherEquipmentListView.as_view(), name="otherequipment"),
 ]
