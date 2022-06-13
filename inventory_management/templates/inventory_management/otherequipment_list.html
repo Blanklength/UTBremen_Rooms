@@ -1,5 +1,21 @@
 {% extends 'inventory_management/base.html' %}
+{% load static %}
+{% block Extra_CSS %}
+    {% static 'inventory_management/list_style.css' %}
+{% endblock Extra_CSS %}
+
 {% block content %}
     <h1>Sonstige Ausstatung</h1>
+    <div class="list-group">
+    {% if otherequipment_list %}
+        {% for otherequipment in otherequipment_list %}
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="ListColumnOtherEquipment">{{ otherequipment.equipmentName}}</div>
+                </a>
+        {% endfor %}
+    {% else %}
+        <p>Keine Sonstige Ausstatung</p>
+    {% endif %}
+    </div>
 
 {% endblock content %}

@@ -9,11 +9,26 @@
     <p>Bauabschnitt: {{ room.room_location.building }}</p>
     <p>Stockwerk: {{ room.room_location.building }}</p>
     <p>Geräte in diesem Raum:</p>
+    {% if room.device_set.all %}
     <ol>
     {% for device in room.device_set.all %}
         <li>{{ device.device_type.category }} {{ device.device_type }}</li>
     {% endfor %}
     </ol>
+    {% else %}
+        <p>Dieser Raum hat keine Geräte</p>
+    {% endif %}
+    <p>Sonstige Ausstatung:</p>
+    {% if room.otherequipment_set.all %}
+        <ol>
+        {% for otherequipment in room.otherequipment_set.all %}
+            <li>{{ otherequipment.equipmentName }}</li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>keine Sonstige Ausstatung</p>
+    {% endif %}
+
 {% endblock content %}
 
 {% endif %}
