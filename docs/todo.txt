@@ -1,0 +1,16 @@
+Aufgaben
+-------------------------
+
+Ticket System
+Profil
+Seiten nur wenn angemedet
+Location Seite
+Rechte Seite
+Profil Seite
+Home Seite
+
+Taner
+Signup
+
+Abdulgani
+Location Seite
