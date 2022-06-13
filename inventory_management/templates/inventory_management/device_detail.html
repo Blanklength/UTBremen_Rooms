@@ -1,0 +1,27 @@
+{% extends 'inventory_management/base.html'%}
+
+{% block title %}
+    Device
+{% endblock title %}
+{% if request.user.is_authenticated %}
+    {% block content %}
+        <h1>Gerät {{ device.device_type }}</h1>
+        <p> Serienummer: {{ device.serial_num }}</p>
+        <p> Garantie abgelaufen am: {{ device.warranty_date }}</p>
+        {% if device.is_working == '0' %}
+            <p>Gerätestatus: Das Gerät ist voll funktionsfähig</p>
+        {% else %}
+            <p>Gerätestatus: Das Gerät ist nicht funktionsfähig</p>
+        {% endif %}
+        <p> Geräte Hinweis: {{ device.hints }}</p>
+        <p> Geräte Probleme: {{ device.issues }}</p>
+        <p> Geräte Produktionsdatum: {{ device.production_date }}</p>
+        {% if device.room %}
+            <p> Gerät befindet sich im Raum: {{ device.room }}</p>
+            <p> Im Bauabschnitt: {{ device.room.room_location.building }}</p>
+            <p> Im Stockwerk: {{ device.room.room_location.floor }}</p>
+        {% else %}
+            <p>Das Gerät befindet sich in keinem Raum</p>
+        {% endif %}
+    {% endblock content %}
+{% endif %}

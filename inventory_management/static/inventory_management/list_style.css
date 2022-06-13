@@ -1,0 +1,15 @@
+
+.ListColumn{
+    float: left;
+    margin: 0px;
+    width: 33.33%;
+    text-align: center;
+}
+
+.SearchColumn{
+    float: left;
+    margin: 0px;
+    width: 33.33%;
+}
+
+

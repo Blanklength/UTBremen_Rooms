@@ -1,0 +1,54 @@
+{% extends 'inventory_management/base.html' %}
+{% load static %}
+{% block Extra_CSS %}
+    {% static 'inventory_management/list_style.css' %}
+{% endblock Extra_CSS %}
+
+{% block title %}
+    Device
+{% endblock title %}
+{% block content %}
+    <h1 class="mb-3">Geräte</h1>
+    {% csrf_token %}
+    <div>
+        <form method="get" action="{% url 'device_list' %}" name="search_dev">
+            <div class="d-flex justify-content-center">
+                <label for="search"></label>
+                <input class = "SearchColumn" type="text" id="search" name="search_dev" placeholder="Suche...">
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        {% csrf_token %}
+        <form method="get" action="{% url 'device_list' %}">
+            {{ form.as_table }}
+            <button type="submit" id = "button_search" name="search_2" class="btn btn-primary">Suche</button>
+        </form>
+    </div>
+    <br>
+    <div class="list-group">
+        {% if device_list %}
+            <div>
+                <div class="ListColumn">
+                    <div class="border border-dark">Gerätekategorie</div>
+                </div>
+                <div class="ListColumn">
+                    <div class="border border-dark">Modell</div>
+                </div>
+                <div class="ListColumn">
+                    <div class="border border-dark">Seriennummer</div>
+                </div>
+            </div>
+            {% for device in device_list %}
+                <a href="device/{{ device.id }}" class="list-group-item list-group-item-action">
+                    <div class="ListColumn">{{ device.device_type.category }}</div>
+                    <div class="ListColumn">{{ device.device_type }}</div>
+                    <div class="ListColumn">{{ device.serial_num }}</div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>No Devices</p>
+        {% endif %}
+    </div>
+{% endblock content %}

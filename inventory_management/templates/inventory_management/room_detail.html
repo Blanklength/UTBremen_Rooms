@@ -1,0 +1,19 @@
+{% extends 'inventory_management/base.html' %}
+
+{% block title %}
+    Räume
+{% endblock title %}
+{% if user.is_authenticated %}
+{% block content %}
+    <h1>Raum {{ room.room_name }}</h1>
+    <p>Bauabschnitt: {{ room.room_location.building }}</p>
+    <p>Stockwerk: {{ room.room_location.building }}</p>
+    <p>Geräte in diesem Raum:</p>
+    <ol>
+    {% for device in room.device_set.all %}
+        <li>{{ device.device_type.category }} {{ device.device_type }}</li>
+    {% endfor %}
+    </ol>
+{% endblock content %}
+
+{% endif %}

@@ -1,0 +1,56 @@
+{% extends 'inventory_management/base.html' %}
+{% load static %}
+{% block Extra_CSS %}
+    {% static 'inventory_management/list_style.css' %}
+{% endblock Extra_CSS %}
+{% block title %}
+    Räume
+{% endblock title %}
+
+{% if user.is_authenticated %}
+    {% block content %}
+        <h1 class="mb-3">Räume</h1>
+        {% csrf_token %}
+        <div>
+            <form method="get" action="{% url 'room_list' %}" name="searched">
+                <div class="d-flex justify-content-center">
+                    <label for="search"></label>
+                    <input class = "SearchColumn" type="text" id="search" name="search" placeholder="Suche...">
+                </div>
+            </form>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+            {% csrf_token %}
+            <form method="get" action="{% url 'room_list' %}">
+                {{ form }}
+                <button type="submit" id = "button_search" name="search_2" class="btn btn-primary">Suche</button>
+            </form>
+        </div>
+        <br>
+        <div class="list-group">
+            {% if room_list %}
+                <div>
+                    <div class="ListColumn">
+                        <div class="border border-dark">Raumbezeichnung</div>
+                    </div>
+                    <div class="ListColumn">
+                        <div class="border border-dark">Bauabschnitt</div>
+                    </div>
+                    <div class="ListColumn">
+                        <div class="border border-dark">Stockwerk</div>
+                    </div>
+                </div>
+                {% for room in room_list %}
+                    <a href="room/{{ room.id }}" class="list-group-item list-group-item-action">
+                        <div class="ListColumn">{{ room.room_name }}</div>
+                        <div class="ListColumn">{{ room.room_location.building }}</div>
+                        <div class="ListColumn">{{ room.room_location.floor }}</div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <p>No Rooms</p>
+            {% endif %}
+        </div>
+    {% endblock content %}
+{% endif %}
