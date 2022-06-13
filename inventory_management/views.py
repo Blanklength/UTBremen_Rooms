@@ -10,6 +10,7 @@ from .forms import FilterFormDevices
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from .models import OtherEquipment
 
 
 # from .forms import FilterForm
@@ -114,6 +115,10 @@ class DeviceDetailView(DetailView):
 
 class RoomDetailView(DetailView):
     model = Room
+
+
+class OtherEquipmentListView(ListView):
+    model = OtherEquipment
 
 
 class SignUpView(CreateView):
